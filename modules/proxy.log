@@ -1,0 +1,5 @@
+[1779710113] Proxy running at 127.0.0.1:8080, max 100 connections
+[1779710113] backend: Backend healthy — routing traffic
+[1779710113] backend: Backend slow — 820ms response time
+[1779710113] backend: Backend offline: port 9001 refused
+[1779710113] backend: Backend status unknown
