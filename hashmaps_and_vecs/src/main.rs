@@ -5,10 +5,8 @@ fn main() {
     let mut headers = HashMap::new();
     
     headers.insert(
-        String::from("hash1"),
-        String::from("hash2");
-        String::from("hash3"),
-        String::from("hash4")
+       String::from("hash1"),
+       String::from("hash2")
     );
 
     if let Some(value) = headers.get("hash1") {
