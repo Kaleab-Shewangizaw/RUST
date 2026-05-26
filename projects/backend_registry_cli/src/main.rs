@@ -1,4 +1,5 @@
 mod reader;
+mod runner;
 
 use std::io::{self, Write};
  
@@ -19,10 +20,6 @@ fn backend_registry_cli() {
 
         if command.eq_ignore_ascii_case("exit") {
             break;
-        }else if command == "list"{
-            
-            reader::read("../config.txt", true);
-
         }else if command == "?" {
             println!("available commands:\n
 >/list                                    -list all servers
@@ -31,8 +28,14 @@ fn backend_registry_cli() {
 >/status                                  -check all servers' status
 >/get [s_number]                          -get specific server
 >/update [s_number] [key] [new value]     -update server");
-        }
-        else if command == "run" {
+        }else if command == "list"{
+            
+            let backends = reader::read("../config.txt");
+            for backend in backends {
+                println!("{}:{} {} {}", backend.address, backend.port, backend.status.describe(), backend.weight);
+            }
+
+        }else if command == "run" {
 
             println!("server number [empty to run all servers]: ");
             let mut response = String::new();
@@ -45,15 +48,25 @@ fn backend_registry_cli() {
 
             if response == "" {
                 println!("running all servers!");
+                let backends = reader::read("../config.txt");
+                runner::runner(backends, None);
             }else {
                 println!("running server {}", response);
+                let backends = reader::read("../config.txt");
+                runner::runner(backends, Some(response.parse::<u32>().expect("not a valid number")));
             }
-
             
+        }else if command == "status" {
+            let backends = reader::read("../config.txt");
+            let mut x = 1;
+            for backend in backends {
+                println!("server {} {}", x, backend.status.describe(), );
 
-
+                x += 1;
+            }
+        }else if command == "next" {
+            println!("switching to the next server!");
             
-        }
     }
 }
 

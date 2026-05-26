@@ -24,16 +24,14 @@ pub fn get_file(path: &str) -> Result<String, String> {
         }
 }
 
-pub fn read(path: &str, details: bool) {
+pub fn read(path: &str) -> Vec<Backend> {
     let content = get_file(path);
+
+    let mut backends = Vec::new();
 
     match content {
 
         Ok(value) => {
-            
-
-             let mut backends = Vec::new();
-            
             for line in value.lines() {
 
                 let mut backend1 = Backend {
@@ -69,19 +67,9 @@ pub fn read(path: &str, details: bool) {
                 backends.push(backend1);
             }
 
-            println!("#    Adrss          port      status      weight");
-            for backend in backends {
-                let mut x : u32 = 1;
-                if details {
-                    println!("{}     {}     {}   {}         {}",x, backend.address, backend.port, backend.status.describe(), backend.weight);
-                } else {
-                    println!("{}:{}", backend.address, backend.port);
-                }
-
-                 x += 1;
-                
-            }
         }
 
         Err(error) => println!("error {}", error)
-    }}
+    }
+    backends
+}
