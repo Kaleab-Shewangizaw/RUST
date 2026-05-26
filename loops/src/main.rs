@@ -2,7 +2,7 @@ fn main() {
     // loop {
     //     println!("this is an infinite loop");
     // }
-    let mut x = 0;
+    let mut x: u64 = 0;
     loop {
         x += 1;
         println!("{}", x);
