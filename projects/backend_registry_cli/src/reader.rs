@@ -2,6 +2,7 @@ use std::fs;
 mod types;
 
 use types::BackendStatus;
+use types::Function;
 
 
 pub struct Backend {
@@ -9,6 +10,7 @@ pub struct Backend {
     pub port: u16,
     pub status: BackendStatus,
     pub weight: u32,
+    pub function: Function,
 
 }
 
@@ -22,7 +24,7 @@ pub fn get_file(path: &str) -> Result<String, String> {
         }
 }
 
-pub fn Read(path: &str, details: bool) {
+pub fn read(path: &str, details: bool) {
     let content = get_file(path);
 
     match content {
@@ -38,7 +40,9 @@ pub fn Read(path: &str, details: bool) {
                 address: String::new(),
                 port: 0,
                 status: BackendStatus::Unknown,
-                weight: 0
+                weight: 0,
+                function: Function::Running
+
             };
                 let parts: Vec<&str> = line.split(',').collect();
                 let name = parts[0].trim();
@@ -74,7 +78,7 @@ pub fn Read(path: &str, details: bool) {
                     println!("{}:{}", backend.address, backend.port);
                 }
 
-                x += 1;
+                 x += 1;
                 
             }
         }

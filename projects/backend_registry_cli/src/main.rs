@@ -20,18 +20,39 @@ fn backend_registry_cli() {
         if command.eq_ignore_ascii_case("exit") {
             break;
         }else if command == "list"{
-            print!("\x1B[2J\x1B[1;1H");
-            io::stdout().flush().unwrap();
-            reader::Read("../config.txt", true);
+            
+            reader::read("../config.txt", true);
 
         }else if command == "?" {
             println!("available commands:\n
 >/list                                    -list all servers
->/run                                     -run all servers
+>/run                                     -run server
 >/next                                    -change to the next server
 >/status                                  -check all servers' status
 >/get [s_number]                          -get specific server
 >/update [s_number] [key] [new value]     -update server");
+        }
+        else if command == "run" {
+
+            println!("server number [empty to run all servers]: ");
+            let mut response = String::new();
+
+            io::stdin()
+                .read_line(&mut response)
+                .expect("can't read the response");
+
+            let response = response.trim();
+
+            if response == "" {
+                println!("running all servers!");
+            }else {
+                println!("running server {}", response);
+            }
+
+            
+
+
+            
         }
     }
 }
