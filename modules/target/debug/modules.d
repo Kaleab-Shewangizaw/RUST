@@ -1,1 +1,0 @@
-/home/kaleab/Documents/learning/RUST/modules/target/debug/modules: /home/kaleab/Documents/learning/RUST/modules/src/config.rs /home/kaleab/Documents/learning/RUST/modules/src/logger.rs /home/kaleab/Documents/learning/RUST/modules/src/main.rs /home/kaleab/Documents/learning/RUST/modules/src/types.rs
