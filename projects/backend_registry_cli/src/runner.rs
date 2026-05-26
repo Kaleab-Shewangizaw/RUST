@@ -1,3 +1,5 @@
+
+use crate::logger::append_log;
 use crate::reader::Backend;
 
 
@@ -7,12 +9,16 @@ pub fn runner(backends: Vec<Backend>, server_number: Option<u32>) {
     for backend in backends {
         if backend.status.describe() == "Healthy" {
             println!("{} {}:{} {} {} status: {}, started", x, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe());
+            append_log(&format!("{} {}:{} {} {} status: {}, started", x, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe()));
+
             x += 1;
         }else if backend.status.describe().starts_with("slow") {
             println!("{} {}:{} {} {} status: {}, started", x, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe());
+            append_log(&format!("{} {}:{} {} {} status: {}, started", x, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe()));
             x += 1;
         }else {
             println!("{} {}:{} {} {} status: {}, can't start", x, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe());
+            append_log(&format!("{} {}:{} {} {} status: {}, can't start", x, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe()));
             x += 1;
         }
     }
@@ -25,10 +31,13 @@ pub fn runner(backends: Vec<Backend>, server_number: Option<u32>) {
         let backend = &backends[server_number as usize - 1];
         if backend.status.describe() == "Healthy" {
             println!("{} {}:{} {} {} status: {}, started", server_number, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe());
+            append_log(&format!("{} {}:{} {} {} status: {}, started", server_number, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe()));
         }else if backend.status.describe().starts_with("slow") {
             println!("{} {}:{} {} {} status: {}, started", server_number, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe());
+            append_log(&format!("{} {}:{} {} {} status: {}, started", server_number, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe()));
         }else {
             println!("{} {}:{} {} {} status: {}, can't start", server_number, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe());
+            append_log(&format!("{} {}:{} {} {} status: {}, can't start", server_number, backend.address, backend.port, backend.status.describe(), backend.weight, backend.status.describe()));
         }
     }
 }

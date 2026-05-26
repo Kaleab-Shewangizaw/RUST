@@ -1,5 +1,7 @@
 mod reader;
 mod runner;
+mod logger;
+mod next;
 
 use std::io::{self, Write};
  
@@ -66,7 +68,10 @@ fn backend_registry_cli() {
             }
         }else if command == "next" {
             println!("switching to the next server!");
-            
+            let backends = reader::read("../config.txt");
+            next::next(backends);
+
+        }
     }
 }
 
