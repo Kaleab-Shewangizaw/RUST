@@ -3,3 +3,11 @@
 [1779836466] Routing to: 127.0.0.1
 [1779836466] Routing to: 127.0.0.1
 [1779836542] Routing to: 127.0.0.1
+[1779840614] 2 127.0.0.1:8002 slow100 1 status: slow100, started
+[1779840635] Routing to: 127.0.0.1
+[1779840635] 127.0.0.1:8001 is healthy, routing to it.
+[1779841659] 1 127.0.0.1:8001 Healthy 2 status: Healthy, started
+[1779841659] 2 127.0.0.1:8002 slow100 1 status: slow100, started
+[1779841659] 3 127.0.0.1:8003 unknown 3 status: unknown, can't start
+[1779841697] Routing to: 127.0.0.1
+[1779841697] 127.0.0.1:8001 is healthy, routing to it.
